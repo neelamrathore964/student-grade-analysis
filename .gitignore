@@ -1,0 +1,40 @@
+# created by virtualenv automatically
+
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__
+
+# Virtual environment folder and files
+/bin/
+/lib/
+/pyvenv.cfg
+/.Python
+/student-grade-env/
+
+# macOS specific files
+.DS_Store
+
+# Flask instance folder
+instance/
+config/
+
+
+# Flask config files
+*.sqlite
+*.db
+
+# Cache directory files
+CACHEDIR.py
+
+# Static files 
+# static/css/*
+# static/js/*
+# static/images/*
+
+# IDE files (PyCharm, VSCode, etc.)
+.idea/
+.vscode/
+
+# Log files
+*.log
