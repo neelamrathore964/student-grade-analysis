@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Analysis Reports</h1>
+        <p>This page provides statistical analysis of student performance.</p>
+
+        <!-- Filter and Sort Form -->
+        <form method="GET" action="{{ url_for('analysis_report') }}" class="mb-4">
+            <div class="row" style="margin-bottom: 15px;">
+                <!-- Filter by Name -->
+                <div class="col-md-4">
+                    <input type="text" name="name" class="form-control" placeholder="Search by Name" value="{{ request.args.get('name', '') }}">
+                </div>
+
+                <!-- Filter by Student ID -->
+                <div class="col-md-4">
+                    <input type="text" name="student_id" class="form-control" placeholder="Search by ID" value="{{ request.args.get('student_id', '') }}">
+                </div>
+            
+                <!-- Filter by Email -->
+                <div class="col-md-4">
+                    <input type="text" name="email" class="form-control" placeholder="Search by Email" value="{{ request.args.get('email', '') }}">
+                </div>
+            </div>
+            <div class="row"  style="margin-bottom: 15px;">
+                <!-- Filter by Classification -->
+                <div class="col-md-4">
+                    <select name="classification" class="form-control">
+                        <option value="">All Classifications</option>
+                        <option value="Distinction" {% if request.args.get('classification') == 'Distinction' %} selected {% endif %}>Distinction</option>
+                        <option value="Merit" {% if request.args.get('classification') == 'Merit' %} selected {% endif %}>Merit</option>
+                        <option value="Pass" {% if request.args.get('classification') == 'Pass' %} selected {% endif %}>Pass</option>
+                        <option value="Fail" {% if request.args.get('classification') == 'Fail' %} selected {% endif %}>Fail</option>
+                    </select>
+                </div>
+
+                <!-- Filter by Average Grade Range -->
+                <!-- <div class="col-md-4">
+                    <input type="text" name="grade_range" class="form-control" placeholder="Grade Range (e.g. 40-60)" value="{{ request.args.get('grade_range', '') }}">
+                </div> -->
+
+                <!-- Sort by -->
+                <div class="col-md-4">
+                    <select name="sort_by" class="form-control">
+                        <option value="student_id" {% if request.args.get('sort_by') == 'student_id' %} selected {% endif %}>Sort by ID</option>
+                        <option value="name" {% if request.args.get('sort_by') == 'name' %} selected {% endif %}>Sort by Name</option>
+                        <option value="average_grade" {% if request.args.get('sort_by') == 'average_grade' %} selected {% endif %}>Sort by Average Grade</option>
+                        <option value="classification" {% if request.args.get('sort_by') == 'classification' %} selected {% endif %}>Sort by Classification</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select name="order_by" class="form-control">
+                        <option value="ASC" {% if request.args.get('order_by') == 'ASC' %} selected {% endif %}>Ascending</option>
+                        <option value="DESC" {% if request.args.get('order_by') == 'DESC' %} selected {% endif %}>Descending</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="row"  style="margin-bottom: 15px;">
+                <!-- Order by (Ascending or Descending) -->
+                
+                <!-- Submit Button -->
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary w-100">Filter</button>
+                </div>
+            
+            </div>
+        </form>
+
+        <!-- Table -->
+        <table class="table table-bordered mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Average Grade</th>
+                    <th>Classification</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.student_id }}</td>
+                    <td>{{ student.first_name }} {{ student.last_name }}</td>
+                    <td>{{ student.average_grade }}%</td>
+                    <td>
+                        {% if student.classification == 'Distinction' %}
+                            <span class="badge bg-success" style="font-size:18px;">{{ student.classification }}</span>
+                        {% elif student.classification == 'Merit' %}
+                            <span class="badge bg-primary" style="font-size:18px;">{{ student.classification }}</span>
+                        {% elif student.classification == 'Pass' %}
+                            <span class="badge bg-warning" style="font-size:18px;">{{ student.classification }}</span>
+                        {% else %}
+                            <span class="badge bg-danger" style="font-size:18px;">{{ student.classification }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

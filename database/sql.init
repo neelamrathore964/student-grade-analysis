@@ -1,0 +1,25 @@
+CREATE DATABASE IF NOT EXISTS student_management_db;
+
+USE student_management_db;
+
+CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id VARCHAR(10) NOT NULL,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    dob DATE,
+    gender VARCHAR(10),
+    email VARCHAR(100),
+    phone VARCHAR(15),
+    address VARCHAR(255),
+    course_enrolled VARCHAR(100),
+    year_of_study INT
+);
+
+CREATE TABLE grades (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id VARCHAR(10),
+    module_name VARCHAR(100),
+    module_grade FLOAT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id)
+);

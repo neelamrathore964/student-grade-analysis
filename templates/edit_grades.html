@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Edit Grades for {{ student.first_name }} {{ student.last_name }}</h2>
+        <form action="/grades/edit/{{ grade.id }}" method="POST">
+            
+            <div class="mb-3">
+                <label for="module_name" class="form-label">Module Name</label>
+                <input type="text" class="form-control" id="module_name" name="module_name" value="{{ grade.module_name|title }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="module_grade" class="form-label">Module Grade</label>
+                <input type="number" class="form-control" id="module_grade" name="module_grade" value="{{ grade.module_grade }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Grades</button>
+        </form>
+    </div>
+{% endblock %}

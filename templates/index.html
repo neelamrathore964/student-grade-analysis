@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="">Student Grade Analysis Dashboard</h1>
+        <div class="alert alert-success">
+            <strong>Welcome!</strong> It is an Overview of Student Performance and Classification.
+          </div>
+        <div class="row mt-4">
+            <!-- Total Students Box -->
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Students</h5>
+                        <p class="card-text" style="font-size: 2em;">{{ total_students }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Distinction Box -->
+            <div class="col-md-3">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Distinction</h5>
+                        <p class="card-text" style="font-size: 2em;">{{ distinction_count }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Merit Box -->
+            <div class="col-md-3">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Merit</h5>
+                        <p class="card-text" style="font-size: 2em;">{{ merit_count }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pass Box -->
+            <div class="col-md-3">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Pass</h5>
+                        <p class="card-text" style="font-size: 2em;">{{ pass_count }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

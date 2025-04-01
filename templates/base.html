@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Student Grade Analysis{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="d-flex" id="wrapper">
+        <div class="bg-dark text-white" id="sidebar">
+            <div class="sidebar-header text-center p-3">
+                <h4>Student Grade Analysis</h4>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="/" class="list-group-item list-group-item-action bg-dark text-white">Home</a>
+                <a href="/students" class="list-group-item list-group-item-action bg-dark text-white">View Students</a>
+                <a href="/students/add" class="list-group-item list-group-item-action bg-dark text-white">Add Student</a>
+                <a href="/grades/add" class="list-group-item list-group-item-action bg-dark text-white">Add Grades</a>
+                <a href="/analysis_report" class="list-group-item list-group-item-action bg-dark text-white">Analysis Report</a>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" class="container-fluid">
+            <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <button class="btn btn-primary" id="menu-toggle">☰</button>
+                </div>
+            </header>
+
+            <!-- Main content area -->
+            <div class="container mt-4">
+                {% block content %}{% endblock %}
+            </div>
+
+            <!-- Footer -->
+            <footer class="bg-dark text-white text-center py-3 mt-4">
+                <p>&copy; 2025 Student Grade Analysis. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // JavaScript for toggling sidebar
+        document.getElementById("menu-toggle").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.getElementById("wrapper").classList.toggle("toggled");
+        });
+    </script>
+</body>
+</html>

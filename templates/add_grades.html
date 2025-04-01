@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Add Grades for Student</h2>
+        <form action="/grades/add" method="POST">
+            <div class="mb-3">
+                <label for="student_id" class="form-label">Select Student</label>
+                <select class="form-select" id="student_id" name="student_id" required>
+                    <option value="">Select Student</option>
+                    {% for student in students %}
+                    <option value="{{ student.student_id }}">{{ student.first_name }} {{ student.last_name }} (ID: {{ student.student_id }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="module_name" class="form-label">Module Name</label>
+                <input type="text" class="form-control" id="module_name" name="module_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="module_grade" class="form-label">Module Grade</label>
+                <input type="number" class="form-control" id="module_grade" name="module_grade" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Grades</button>
+        </form>
+    </div>
+{% endblock %}
